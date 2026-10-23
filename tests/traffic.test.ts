@@ -86,7 +86,10 @@ describe('contrôleur de carrefour', () => {
   });
 
   test('en trafic intense, jamais de verts conflictuels', () => {
-    let state = { ...createInitialState(), density: 'high' as const };
+    let state: ReturnType<typeof createInitialState> = {
+  ...createInitialState(),
+  density: 'high'
+  };
     for (let i = 0; i < 1200; i++) {
       state = stepSimulation(state, 0.1);
       const ns = trafficLight(state, 'N') === 'green';
